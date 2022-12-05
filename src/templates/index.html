@@ -2,15 +2,59 @@
 
 
 {% block head %}
-<title>Home</title>
+<title>FootyPedia - Home</title>
+<link href="../static/css/index.css" rel="stylesheet" crossorigin="anonymous">
 {% endblock %}
 
 
 
 {% block body %}
-<h1>PÁGINA INICIAL</h1>
+<section class="intro">
+    <div class="bg-image-vertical h-100" style="background-color: #a3eba9;
+            background-image: url(../static/messi.jpg);
+          ">
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <p class="display-4 font-weight-bold mb-5 text-dark">FootyPedia</p>
+          <div class="card">
+            <div class="card-body">
+              <div class="row justify-content-center">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <div id="basic" class="form-outline">
+                    <input type="text" id="form1" class="form-control form-control-lg" />
+                    <label class="form-label" for="form1">What are you looking for?</label>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="dropdown">
+                      <a class="btn btn-light btn-rounded btn-lg btn-block dropdown-toggle" href="#" role="button"
+                        id="dropdownMenuLink" data-mdb-toggle="dropdown" aria-expanded="false">
+                        Category
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <li><button class="dropdown-item" type="button">Any</button></li>
+                        <li><button class="dropdown-item" type="button">Player</button></li>
+                        <li><button class="dropdown-item" type="button">Team</button></li>
+                        <li><button class="dropdown-item" type="button">League</button></li>
+                      </ul>
+                    </div>
+                  </div>
+                <div class="col-md-2">
+                  <input class="btn btn-secondary btn-block btn-lg" type="submit" value="Search" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<button type="button" class="btn btn-primary">Primary</button>
 
 
+
+{% endblock %}
+
+{% block jsinclude %}
+<script src="../static/js/index.js" async defer></script>
 {% endblock %}
