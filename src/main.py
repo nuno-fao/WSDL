@@ -8,8 +8,8 @@ app.secret_key = "key_super_secreta_não_digam_a_ninguém"
 def index():
     args = request.args.to_dict()
     data_filter = "Any"
-    if "data-query" in args:
-        data_filter = args["data-query"]
+    if "data-filter" in args:
+        data_filter = args["data-filter"]
     return render_template('index.html', data_filter=data_filter)
 
 
