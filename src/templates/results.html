@@ -10,7 +10,7 @@
         {% for t in results %}
             <li class="nav-item" role="presentation">
                 <a
-                        class="nav-link {% if t == "Team" %}  active {% endif %}"
+                        class="nav-link {% if t == active %}  active {% endif %}"
                         id="ex1-tab-1"
                         data-mdb-toggle="tab"
                         href="#{{ t }}"
@@ -30,7 +30,7 @@
     <div class="tab-content" id="ex1-content">
         {% for k,t in results.items() %}
             <div
-                    class="tab-pane fade {% if(k == "Team") %} show active{% endif %}"
+                    class="tab-pane fade {% if(k == active) %} show active{% endif %}"
                     id="{{ k }}"
                     role="tabpanel"
                     aria-labelledby="{{ k }}"

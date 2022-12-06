@@ -17,7 +17,14 @@ def results():
         query = args["query"]
 
     results = {"Team": {}, "Player": {}, "League": {}}
-    return render_template('results.html', query=query, results=results)
+
+    if "category_input" in args and args["category_input"] in results:
+        results = {args["category_input"]: results[args["category_input"]]}
+        active = args["category_input"]
+    else:
+        active = "Team"
+
+    return render_template('results.html', query=query, results=results, active=active)
 
 
 if __name__ == "__main__":
