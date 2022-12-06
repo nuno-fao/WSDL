@@ -6,11 +6,7 @@ app.secret_key = "key_super_secreta_não_digam_a_ninguém"
 
 @app.route("/")  # this sets the route to this page
 def index():
-    args = request.args.to_dict()
-    data_filter = "Any"
-    if "data-filter" in args:
-        data_filter = args["data-filter"]
-    return render_template('index.html', data_filter=data_filter)
+    return render_template('index.html')
 
 
 @app.route("/results")

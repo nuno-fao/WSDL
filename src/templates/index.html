@@ -30,21 +30,29 @@
                                         <div class="dropdown">
                                             <a class="btn btn-light btn-rounded btn-lg btn-block dropdown-toggle"
                                                href="#"
-                                               role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown"
+                                               role="button" id="categoryDropdown" data-mdb-toggle="dropdown"
                                                aria-expanded="false">
-                                                {{ data_filter }}
+                                                Any
                                             </a>
-                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                <li><a href="/" class="dropdown-item" type="button">Any</a></li>
-                                                <li><a href="/?data-filter=player" class="dropdown-item" type="button">Player</a>
+                                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+                                                <li>
+                                                    <a class="dropdown-item category-item" type="button"
+                                                       data-category="Any">Any</a>
                                                 </li>
-                                                <li><a href="/?data-filter=Team" class="dropdown-item" type="button">Team</a>
+                                                <li>
+                                                    <a class="dropdown-item category-item" type="button"
+                                                       data-category="Player">Player</a>
                                                 </li>
-                                                <li><a href="/?data-filter=League" class="dropdown-item" type="button">League</a>
+                                                <li><a class="dropdown-item category-item" type="button"
+                                                       data-category="Team">Team</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item category-item" type="button"
+                                                       data-category="League">League</a>
                                                 </li>
                                             </ul>
                                             <input type="hidden" id="category_input" name="category_input"
-                                                   value="{{ data_filter }}">
+                                                   value="any">
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -66,4 +74,17 @@
 
 {% block jsinclude %}
     <script src="../static/js/index.js" async defer></script>
+    <script>
+        const category_items = document.getElementsByClassName("category-item")
+        const category_hidden_input = document.getElementById("category_input")
+        const category_dropdown = document.getElementById("categoryDropdown")
+        if (category_items) {
+            for (const categoryItem of category_items) {
+                categoryItem.addEventListener("click", () => {
+                    category_hidden_input.value = categoryItem.dataset.category
+                    category_dropdown.innerText = categoryItem.dataset.category
+                })
+            }
+        }
+    </script>
 {% endblock %}
