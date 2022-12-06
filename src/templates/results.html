@@ -1,10 +1,43 @@
+{% extends 'base.html' %}
+
 {% block head %}
-<title>FootyPedia - Home</title>
+    <title>FootyPedia - Results for "{{ query }}"</title>
 {% endblock %}
 
 {% block body %}
-<h1>RESULTADOS YOOOO</h1>
 
+    <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+        {% for t in results %}
+            <li class="nav-item" role="presentation">
+                <a
+                        class="nav-link {% if t == "Team" %}  active {% endif %}"
+                        id="ex1-tab-1"
+                        data-mdb-toggle="tab"
+                        href="#{{ t }}"
+                        role="tab"
+                        aria-controls="{{ t }}"
+                        aria-selected="true"
+                >
+                    {{ t }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
 
+    <!-- Tabs navs -->
+
+    <!-- Tabs content -->
+    <div class="tab-content" id="ex1-content">
+        {% for k,t in results.items() %}
+            <div
+                    class="tab-pane fade {% if(k == "Team") %} show active{% endif %}"
+                    id="{{ k }}"
+                    role="tabpanel"
+                    aria-labelledby="{{ k }}"
+            >
+                {{ k }}
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}

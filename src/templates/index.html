@@ -1,58 +1,63 @@
 {% extends 'base.html' %}
 
-
 {% block head %}
-<title>FootyPedia - Home</title>
-<link href="../static/css/index.css" rel="stylesheet" crossorigin="anonymous">
+    <title>FootyPedia - Home</title>
+    <link href="../static/css/index.css" rel="stylesheet" crossorigin="anonymous">
 {% endblock %}
 
 
 
 {% block body %}
-<section class="intro">
-    <div class="bg-image-vertical h-100" style="background-color: #a3eba9;
+    <section class="intro">
+        <div class="bg-image-vertical h-100" style="background-color: #a3eba9;
             background-image: url(../static/messi.jpg);
           ">
-        <div class="mask d-flex align-items-center h-100">
-            <div class="container">
-                <p class="display-4 font-weight-bold mb-5 text-dark">FootyPedia</p>
-                <div class="card">
-                    <div class="card-body">
-                        <form action="/results" method="GET">
-                            <div class="row justify-content-center">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <div id="basic" class="form-outline">
-                                        <input type="text" id="search_string" class="form-control form-control-lg" name="query"/>
-                                        <label class="form-label" for="form1">What are you looking for?</label>
+            <div class="mask d-flex align-items-center h-100">
+                <div class="container">
+                    <p class="display-4 font-weight-bold mb-5 text-dark">FootyPedia</p>
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="/results" method="GET">
+                                <div class="row justify-content-center">
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <div id="basic" class="form-outline">
+                                            <input type="text" id="search_string" class="form-control form-control-lg"
+                                                   name="query"/>
+                                            <label class="form-label" for="form1">What are you looking for?</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <div class="dropdown">
+                                            <a class="btn btn-light btn-rounded btn-lg btn-block dropdown-toggle"
+                                               href="#"
+                                               role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown"
+                                               aria-expanded="false">
+                                                {{ data_filter }}
+                                            </a>
+                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <li><a href="/" class="dropdown-item" type="button">Any</a></li>
+                                                <li><a href="/?data-filter=player" class="dropdown-item" type="button">Player</a>
+                                                </li>
+                                                <li><a href="/?data-filter=Team" class="dropdown-item" type="button">Team</a>
+                                                </li>
+                                                <li><a href="/?data-filter=League" class="dropdown-item" type="button">League</a>
+                                                </li>
+                                            </ul>
+                                            <input type="hidden" id="category_input" name="category_input"
+                                                   value="{{ data_filter }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input class="btn btn-secondary btn-block btn-lg" type="submit" value="Search"/>
                                     </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <div class="dropdown">
-                                        <a class="btn btn-light btn-rounded btn-lg btn-block dropdown-toggle" href="#"
-                                            role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown"
-                                            aria-expanded="false">
-                                            {{ data_filter }}
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><a href="/" class="dropdown-item" type="button">Any</a></li>
-                                            <li><a href="/?data-filter=player" class="dropdown-item" type="button">Player</a></li>
-                                            <li><a href="/?data-filter=Team" class="dropdown-item" type="button">Team</a></li>
-                                            <li><a href="/?data-filter=League" class="dropdown-item" type="button">League</a></li>
-                                        </ul>
-                                        <input type="hidden" id="category_input" name="category_input" value="{{ data_filter }}">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <input class="btn btn-secondary btn-block btn-lg" type="submit" value="Search" />
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
@@ -60,5 +65,5 @@
 {% endblock %}
 
 {% block jsinclude %}
-<script src="../static/js/index.js" async defer></script>
+    <script src="../static/js/index.js" async defer></script>
 {% endblock %}

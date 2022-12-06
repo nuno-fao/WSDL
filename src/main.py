@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 app.secret_key = "key_super_secreta_não_digam_a_ninguém"
@@ -15,7 +15,13 @@ def index():
 
 @app.route("/results")
 def results():
-    return render_template('results.html')
+    args = request.args.to_dict()
+    query = ""
+    if "query" in args:
+        query = args["query"]
+
+    results = {"Team": {}, "Player": {}, "League": {}}
+    return render_template('results.html', query=query, results=results)
 
 
 if __name__ == "__main__":
