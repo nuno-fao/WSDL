@@ -22,7 +22,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6 mb-3 mb-md-0">
                                     <div id="basic" class="form-outline">
-                                        <input type="text" id="search_string" class="form-control form-control-lg" />
+                                        <input type="text" id="search_string" class="form-control form-control-lg" name="query"/>
                                         <label class="form-label" for="form1">What are you looking for?</label>
                                     </div>
                                 </div>
@@ -31,24 +31,23 @@
                                         <a class="btn btn-light btn-rounded btn-lg btn-block dropdown-toggle" href="#"
                                             role="button" id="dropdownMenuLink" data-mdb-toggle="dropdown"
                                             aria-expanded="false">
-                                            Category
+                                            {{ data_filter }}
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                            <li><button class="dropdown-item" type="button">Any</button></li>
-                                            <li><button class="dropdown-item" type="button">Player</button></li>
-                                            <li><button class="dropdown-item" type="button">Team</button></li>
-                                            <li><button class="dropdown-item" type="button">League</button></li>
+                                            <li><a href="/" class="dropdown-item" type="button">Any</a></li>
+                                            <li><a href="/?data-filter=player" class="dropdown-item" type="button">Player</a></li>
+                                            <li><a href="/?data-filter=Team" class="dropdown-item" type="button">Team</a></li>
+                                            <li><a href="/?data-filter=League" class="dropdown-item" type="button">League</a></li>
                                         </ul>
-                                        <input type="hidden" id="category_input" name="category_input" value="">
+                                        <input type="hidden" id="category_input" name="category_input" value="{{ data_filter }}">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <input class="btn btn-secondary btn-block btn-lg" type="submit" value="Search" />
                                 </div>
                             </div>
+                        </form>
                     </div>
-                    </form>
-
                 </div>
             </div>
         </div>
