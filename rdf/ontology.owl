@@ -1,0 +1,459 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#"
+     xml:base="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia">
+        <rdfs:comment xml:lang="en">This is an ontology about a Football from the past 6 years</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWonCompetition -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWonCompetition">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Competition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#editionOfLeague -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#editionOfLeague">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Edition"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#League"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSuqad"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerWonCompetition -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerWonCompetition">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Competition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSuqad -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSuqad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadParticipatedIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadParticipatedIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Edition"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAddress -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAddress">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAssociation -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAssociation">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCity">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCountry -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCountry">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubEmail -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubEmail">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFoundationYear -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFoundationYear">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubImage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubImage">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubMainSponsor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubMainSponsor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubNickname -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubNickname">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubPresident -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubPresident">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubSponsor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubSponsor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubUefaRanking -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubUefaRanking">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWebsite -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWebsite">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubZeroZeroLink -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubZeroZeroLink">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerage">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthplace -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthplace">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerfoot -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerfoot">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerheight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerheight">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playernationality -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playernationality">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playernaturalFrom -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playernaturalFrom">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerweight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerweight">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordassists -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordassists">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgames -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgames">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoals -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoals">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoalsConceded -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoalsConceded">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Competition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Competition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Edition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Edition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#League -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#League"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Player"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Record"/>
+    
+
+
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Squad"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

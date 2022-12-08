@@ -1,0 +1,1 @@
+[{"goals/game": "2,64", "victories_home": "40%", "Ties": "28%", "victories_away": "32%", "logo": "https://www.zerozero.pt/img/logos/edicoes/156405_imgbank_.png"}, {"Darwin N\u00fa\u00f1ez": "26", "Mehdi Taremi": "20", "Ricardo Horta": "19"}, {"Rafa Silva": "16"}]
