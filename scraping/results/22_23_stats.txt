@@ -1,0 +1,1 @@
+[{"goals/game": "2,50", "victories_home": "43%", "Ties": "19%", "victories_away": "38%", "logo": "https://www.zerozero.pt/img/logos/edicoes/156405_imgbank_.png"}, {"Gon\u00e7alo Ramos": "9", "Fran Navarro": "8", "Pedro Gon\u00e7alves": "7"}, {"Mehdi Taremi": "5"}]
