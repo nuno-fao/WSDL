@@ -26,5 +26,10 @@ def results():
 
     return render_template('results.html', query=query, results=results, active=active)
 
+@app.route("/club/<something>")
+def clup_page(something):
+
+    return render_template('club.html', id=something)
+
 if __name__ == "__main__":
     app.run(debug=True)
