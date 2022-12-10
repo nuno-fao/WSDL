@@ -26,10 +26,15 @@ def results():
 
     return render_template('results.html', query=query, results=results, active=active)
 
-@app.route("/club/<something>")
-def clup_page(something):
+@app.route("/club/<id>")
+def clup(id):
 
-    return render_template('club.html', id=something)
+    return render_template('club.html', id=id)
+
+@app.route("/league/<id>")
+def clup_page(id):
+
+    return render_template('league.html', id=id)
 
 if __name__ == "__main__":
     app.run(debug=True)
