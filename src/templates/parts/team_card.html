@@ -1,0 +1,28 @@
+<div
+        class="tab-pane fade {% if(k == active) %} show active{% endif %} d-flex flex-wrap"
+        id="{{ k }}"
+        role="tabpanel"
+        aria-labelledby="{{ k }}"
+>
+    {% for club in t %}
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex my-3" style="width: 200px; height: 200px; justify-content: center">
+                    <img src="{{ club["image"] }}" class="m-auto"
+                         style="width: auto; height: 200px; object-fit: cover;"/>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ club["name"] }}</h5>
+                        <p class="card-text">
+                            {{ club["city"] }}, {{ club["country"] }}
+                        </p>
+                        <p>
+                            <small class="text-muted">{{ club["year_of_foundation"] }}</small>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

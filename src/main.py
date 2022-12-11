@@ -16,7 +16,26 @@ def results():
     if "query" in args:
         query = args["query"]
 
-    results = {"Team": {}, "Player": {}, "League": {}}
+    results = {
+        "Team": [
+            {
+                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
+                "name": "Sporting Clube de Portugal",
+                "country": "Portugal",
+                "city": "Lisboa",
+                "year_of_foundation": "1906-07-01"
+            },
+            {
+                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
+                "name": "Sporting Clube de Portugal",
+                "country": "Portugal",
+                "city": "Lisboa",
+                "year_of_foundation": "1906-07-01"
+            },
+        ],
+        "Player": {},
+        "League": {}
+    }
 
     if "category_input" in args and args["category_input"] in results:
         results = {args["category_input"]: results[args["category_input"]]}
@@ -25,6 +44,7 @@ def results():
         active = "Team"
 
     return render_template('results.html', query=query, results=results, active=active)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
