@@ -1,5 +1,5 @@
 <div
-        class="tab-pane fade {% if(k == active) %} show active{% endif %} d-flex flex-wrap"
+        class="tab-pane fade {% if(k == active) %} show active{% endif %} d-flex flex-wrap justify-content-center"
         id="{{ k }}"
         role="tabpanel"
         aria-labelledby="{{ k }}"
@@ -9,9 +9,9 @@
             <div class="row g-0">
                 <div class="col-md-4 d-flex my-3" style="width: 200px; height: 200px; justify-content: center">
                     <img src="{{ club["image"] }}" class="m-auto"
-                         style="width: auto; height: 200px; object-fit: cover;"/>
+                         style="width: auto; height: 150px; object-fit: cover;"/>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-7">
                     <div class="card-body">
                         <h5 class="card-title">{{ club["name"] }}</h5>
                         <p class="card-text">

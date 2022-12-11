@@ -6,7 +6,10 @@
 
 {% block body %}
     <div class="container-md">
-        <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
+        <h1 class="my-5 text-center">
+        FootyPedia - Results for "{{ query }}"
+        </h1>
+        <ul class="nav nav-tabs mb-3 d-flex flex-row justify-content-center" id="ex1" role="tablist">
             {% for t in results %}
                 <li class="nav-item" role="presentation">
                     <a

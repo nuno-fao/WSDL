@@ -32,6 +32,27 @@ def results():
                 "city": "Lisboa",
                 "year_of_foundation": "1906-07-01"
             },
+            {
+                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
+                "name": "Sporting Clube de Portugal",
+                "country": "Portugal",
+                "city": "Lisboa",
+                "year_of_foundation": "1906-07-01"
+            },
+            {
+                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
+                "name": "Sporting Clube de Portugal",
+                "country": "Portugal",
+                "city": "Lisboa",
+                "year_of_foundation": "1906-07-01"
+            },
+            {
+                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
+                "name": "Sporting Clube de Portugal",
+                "country": "Portugal",
+                "city": "Lisboa",
+                "year_of_foundation": "1906-07-01"
+            },
         ],
         "Player": {},
         "League": {}
