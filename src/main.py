@@ -1,4 +1,8 @@
+import json
+
 from flask import Flask, render_template, request
+from owlready2 import *
+from urllib.parse import unquote_plus
 
 app = Flask(__name__)
 app.secret_key = "key_super_secreta_não_digam_a_ninguém"
@@ -74,9 +78,36 @@ def results():
     return render_template('results.html', query=query, results=results, active=active)
 
 
-@app.route("/club/<id>")
-def clup(id):
-    return render_template('club.html', id=id)
+def toJson(entitiesList):
+    out = []
+    for c in entitiesList:
+        line = []
+        for e in c:
+            try:
+                line.append(e.iri)
+            except:
+                line.append(e)
+        out.append(line)
+    out = json.dumps(out)
+    return out
+
+
+@app.route("/club/<name>")
+def clup(name):
+    name = unquote_plus(name)
+
+    get_ontology("../rdf/result").load()
+    q = """
+    select distinct ?club ?ar ?v where {
+      ?club  a <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club> .
+      ?club  ?r "%s" 
+      ?club  ?ar ?v
+    }
+    """ % name
+
+    club = list(default_world.sparql(q))
+    club = toJson(club)
+    return render_template('club.html', id=id, club=club)
 
 
 @app.route("/league/<id>_<season>")
