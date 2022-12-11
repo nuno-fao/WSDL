@@ -81,25 +81,69 @@ def results():
 
 
 def toJson(entitiesList):
-    out = []
+    temp = []
     for c in entitiesList:
         line = []
         for e in c:
             if type(e) == type(2):
                 line.append(e)
-            elif type(e) == type("s"):
+            elif isinstance(e, str):
                 line.append(e)
             else:
-                a = "http://localhost:5000/api/"
-                line.append(a + e.name)
-        out.append(line)
+                try:
+                    a = "http://localhost:5000/api/id/"
+                    line.append(a + e.name)
+                except:
+                    line.append("")
+        temp.append(line)
     # out = json.dumps(out)
+
+    out = {}
+    for e in temp:
+        if not (e[0] in out.keys()):
+            out[e[0]] = {}
+        if not (e[1] in out[e[0]].keys()):
+            out[e[0]][e[1]] = []
+        out[e[0]][e[1]].append(e[2])
 
     return out
 
 
-@app.route("/api/<id>")
-def api(id):
+def treat(entitiesList):
+    temp = []
+    for c in entitiesList:
+        line = []
+        for e in c:
+            if type(e) == type(2):
+                line.append(e)
+            elif isinstance(e, str):
+                line.append(e)
+            else:
+                try:
+                    a = "http://localhost:5000/api/id/"
+                    line.append(a + e.name)
+                except:
+                    line.append("")
+        temp.append(line)
+    # out = json.dumps(out)
+
+    return temp
+
+
+@app.route("/api")
+def api():
+    q = request.args.get("q")
+    print(q)
+    entry = list(default_world.sparql("""%s""" % q))
+    out = treat(entry)
+
+    out = json.dumps(out)
+    out = json.loads(out)
+    return (out)
+
+
+@app.route("/api/id/<id>")
+def apiID(id):
     q1 = """
     select distinct ?ent ?r ?v where {
       ?ent  <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
@@ -116,19 +160,9 @@ def api(id):
 
     entry1 = list(default_world.sparql(q1))
     entry2 = list(default_world.sparql(q2))
-    entry1 = toJson(entry1)
-    entry2 = toJson(entry2)
     entry = entry1 + entry2
+    out = toJson(entry)
 
-    out = {}
-    for e in entry:
-        if not (e[0] in out.keys()):
-            out[e[0]] = {}
-        if not (e[1] in out[e[0]].keys()):
-            out[e[0]][e[1]] = []
-        out[e[0]][e[1]].append(e[2])
-
-    print(out)
     out = json.dumps(out)
     out = json.loads(out)
     return (out)
