@@ -1,105 +1,104 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <title>FootyPedia - Club {{ id }}</title>
-    <link href="../static/css/club.css" rel="stylesheet" crossorigin="anonymous">
+<title>FootyPedia - Club {{id}}</title>
+<link href="../static/css/club.css" rel="stylesheet" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-    {{ club }}
-    <div class="d-flex container " style="align-items: flex-start;">
+<div class="d-flex container "  style="align-items: flex-start;">
 
-        <div class="d-flex flex-column p-3 bg-light w-25 ">
-            <h1 class="m-auto">FC Porto</h1>
-            <hr>
+    <div class="d-flex flex-column p-3 bg-light w-25 " >
+        <h1 class="m-auto">FC Porto</h1>
+        <hr>
 
-            <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
-                <img src="https://www.zerozero.pt/img/logos/equipas/9_imgbank.png" class="m-auto"
-                     style="width: auto; height: 200px; object-fit: cover;"/>
+        <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
+            <img src="https://www.zerozero.pt/img/logos/equipas/9_imgbank.png" class="m-auto"
+                style="width: auto; height: 200px; object-fit: cover;" />
+        </div>
+
+        <div style="margin-top: 20px">
+            <div class="bio bio-line">
+                <span>Nome</span>
+                Futebol Clube do Porto
             </div>
 
-            <div style="margin-top: 20px">
-                <div class="bio bio-line">
-                    <span>Nome</span>
-                    Futebol Clube do Porto
+            <div class="bio bio-line">
+                <span>Presidente</span>
+                Jorge Nuno de Lima Pinto da Costa
+            </div>
+
+            <div class="bio bio-line">
+                <span>Alcunha</span>
+                Dragões, Azuis e Brancos, Portistas
+            </div>
+
+            <div class="bio-line row">
+
+                <div class="bio col-6">
+                    <span>Fundação</span>
+                    1893-09-28
                 </div>
 
-                <div class="bio bio-line">
-                    <span>Presidente</span>
-                    Jorge Nuno de Lima Pinto da Costa
+                <div class="bio col-6">
+                    <span>Cidade</span>
+                    Porto
                 </div>
 
-                <div class="bio bio-line">
-                    <span>Alcunha</span>
-                    Dragões, Azuis e Brancos, Portistas
+            </div>
+            <div class="bio-line row">
+
+                <div class="bio col-6">
+                    <span>Asssociação</span>
+                    AF Porto
                 </div>
 
-                <div class="bio-line row">
-
-                    <div class="bio col-6">
-                        <span>Fundação</span>
-                        1893-09-28
-                    </div>
-
-                    <div class="bio col-6">
-                        <span>Cidade</span>
-                        Porto
-                    </div>
-
-                </div>
-                <div class="bio-line row">
-
-                    <div class="bio col-6">
-                        <span>Asssociação</span>
-                        AF Porto
-                    </div>
-
-                    <div class="bio col-6">
-                        <span>País</span>
-                        Portugal
-                    </div>
-
-                </div>
-
-                <div class="bio-line row">
-
-                    <div class="bio col-6">
-                        <span>Ranking UEFA</span>
-                        16
-                    </div>
-
-                    <div class="bio col-6">
-                        <span>Ranking IFFHS</span>
-                        60
-                    </div>
-
-                </div>
-
-                <div class="bio bio-line">
-                    <span>Morada</span>
-                    Estádio do Dragão, Entrada Nascente, Porta 15, Piso 3 Via Futebol Clube do Porto, 4350-415 Porto
-                </div>
-
-                <div class="bio bio-line">
-                    <span>Site</span>
-                    <a href="http://www.fcporto.pt">http://www.fcporto.pt</a>
-                </div>
-
-                <div class="bio bio-line">
-                    <span>Email</span>
-                    fcporto@fcporto.pt
+                <div class="bio col-6">
+                    <span>País</span>
+                    Portugal
                 </div>
 
             </div>
 
+            <div class="bio-line row">
+
+                <div class="bio col-6">
+                    <span>Ranking UEFA</span>
+                    16
+                </div>
+
+                <div class="bio col-6">
+                    <span>Ranking IFFHS</span>
+                    60
+                </div>
+
+            </div>
+
+            <div class="bio bio-line">
+                <span>Morada</span>
+                Estádio do Dragão, Entrada Nascente, Porta 15, Piso 3 Via Futebol Clube do Porto, 4350-415 Porto
+            </div>
+
+            <div class="bio bio-line">
+                <span>Site</span>
+                <a href="http://www.fcporto.pt">http://www.fcporto.pt</a>
+            </div>
+
+            <div class="bio bio-line">
+                <span>Email</span>
+                fcporto@fcporto.pt
+            </div>
 
         </div>
 
-        <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 p-5">
-            <h2>Época Atual</h2>
 
-            <table class="table table-hover table-sm">
-                <thead class="bg-light">
+    </div>
+
+    <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 p-5">
+        <h2>Época Atual</h2>
+
+        <table class="table table-hover table-sm" >
+            <thead class="bg-light">
                 <tr>
                     <th scope="col">Competition</th>
                     <th scope="col">J</th>
@@ -108,8 +107,8 @@
                     <th scope="colr">D</th>
                     <th scope="col">DG</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr>
                     <td>Liga dos Campeões</td>
                     <td>6</td>
@@ -158,343 +157,345 @@
                     <td>2</td>
                     <td>12-7</td>
                 </tr>
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
-            <hr>
+        <hr>
 
-            <h2>Plantel</h2>
+        <h2>Plantel</h2>
 
 
-            <div class="position" style="text-align: start">
-                Goalkeeper
-            </div>
+        <div class="position" style="text-align: start">
+            Goalkeeper
+        </div>
 
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
-
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
-
-            <div class="position" style="text-align: start">
-                Defense
-            </div>
-
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
+        </div>
 
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
-
-
-            <div class="position" style="text-align: start">
-                Medio
-            </div>
-
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
+        </div>
 
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+        <div class="position" style="text-align: start">
+            Defense
+        </div>
+
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
-
-            <div class="position" style="text-align: start">
-                Avançado
-            </div>
-
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
-
-            <div class="d-flex container justify-content-between">
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
                 </div>
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
                 </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
 
-                <div class="d-flex flex-row ">
-                    <div class="player-number">
-                        25
-                    </div>
-                    <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
-                        <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
-                             class="m-auto" style="width: auto; height: 50px; object-fit: cover;"/>
-                    </div>
-                    <div class="player-name">
-                        Zaidu Sanusi
-                    </div>
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="position" style="text-align: start">
+            Medio
+        </div>
+
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
+
+        <div class="position" style="text-align: start">
+            Avançado
+        </div>
+
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex container justify-content-between">
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
                 </div>
             </div>
 
+            <div class="d-flex flex-row ">
+                <div class="player-number">
+                    25
+                </div>
+                <div class="d-flex m-auto " style="width: 50px; height: 50px; justify-content: center">
+                    <img src="https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png"
+                        class="m-auto" style="width: auto; height: 50px; object-fit: cover;" />
+                </div>
+                <div class="player-name">
+                    Zaidu Sanusi
+                </div>
+            </div>
+        </div>
 
-            <h2>Títulos</h2>
 
-            <table class="table table-hover table-sm table-borderless">
-                <thead class="bg-light">
+
+        <h2>Títulos</h2>
+
+        <table class="table table-hover table-sm table-borderless">
+            <thead class="bg-light">
                 <tr>
                     <th scope="col">Nome</th>
                     <th scope="col">Número</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 <tr>
                     <td>Taça Intercontinental</td>
                     <td>2</td>
@@ -528,13 +529,13 @@
                     <td>4</td>
                 </tr>
 
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
-            <hr>
+        <hr>
 
-
-        </div>
 
     </div>
+
+</div>
 {% endblock %}
