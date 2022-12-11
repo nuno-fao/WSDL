@@ -54,8 +54,15 @@ def results():
                 "year_of_foundation": "1906-07-01"
             },
         ],
-        "Player": {},
-        "League": {}
+        "Player": [
+            {
+                "image": "https://static-img.zz.pt/jogadores/31/28531_20210919193151_rui_patricio.png",
+                "name": "Ruí Patricio",
+                "position": "GK",
+                "birthdate": "1988-02-15"
+            }
+        ],
+        "League": []
     }
 
     if "category_input" in args and args["category_input"] in results:
@@ -65,20 +72,22 @@ def results():
         active = "Team"
 
     return render_template('results.html', query=query, results=results, active=active)
+
+
 @app.route("/club/<id>")
 def clup(id):
-
     return render_template('club.html', id=id)
+
 
 @app.route("/league/<id>_<season>")
 def league(id, season):
-
     return render_template('league.html', id=id, season=season)
+
 
 @app.route("/player/<id>")
 def player(id):
-
     return render_template('player.html', id=id)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -5,20 +5,21 @@
 {% endblock %}
 
 {% block body %}
+
     <div class="container-md">
         <h1 class="my-5 text-center">
-        FootyPedia - Results for "{{ query }}"
+            FootyPedia - Results for "{{ query }}"
         </h1>
         <ul class="nav nav-tabs mb-3 d-flex flex-row justify-content-center" id="ex1" role="tablist">
             {% for t in results %}
                 <li class="nav-item" role="presentation">
                     <a
                             class="nav-link {% if t == active %}  active {% endif %}"
-                            id="ex1-tab-1"
+                            id="ex1-tab-{{ t }}"
                             data-mdb-toggle="tab"
-                            href="#{{ t }}"
+                            href="#ex1-tabs-{{ t }}"
                             role="tab"
-                            aria-controls="{{ t }}"
+                            aria-controls="ex1-tabs-{{ t }}"
                             aria-selected="true"
                     >
                         {{ t }}
@@ -26,15 +27,28 @@
                 </li>
             {% endfor %}
         </ul>
-
         <!-- Tabs navs -->
 
         <!-- Tabs content -->
-        <div class="tab-content d-flex flex-column justify-content-center" id="ex1-content">
+        <div class="tab-content" id="ex1-content">
             {% for k,t in results.items() %}
-                {% include 'parts/team_card.html' %}
+                <div
+                        class="tab-pane fade {% if k == active %}  show active {% endif %} "
+                        id="ex1-tabs-{{ k }}"
+                        role="tabpanel"
+                        aria-labelledby="ex1-tab-{{ k }}"
+                >
+                    <div class="d-flex flex-wrap justify-content-center">
+                        {% if k == "Team" %}
+                            {% include 'parts/team_card.html' %}
+                        {% elif k == "Player" %}
+                            {% include 'parts/player_card.html' %}
+                        {% elif k == "League" %}
+                            {% include 'parts/league_card.html' %}
+                        {% endif %}
+                    </div>
+                </div>
             {% endfor %}
         </div>
     </div>
-
 {% endblock %}
