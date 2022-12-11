@@ -1,0 +1,12 @@
+.bio span {
+  font: 700 10px "Roboto Condensed", Helvetica, Arial, Verdana, sans-serif;
+  color: #8090a0;
+  letter-spacing: 0.04em;
+  display: block;
+  text-transform: uppercase;
+}
+
+.bio-line {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
