@@ -98,10 +98,11 @@ def clup(name):
 
     get_ontology("../rdf/result").load()
     q = """
-    select distinct ?club ?ar ?v where {
+    select distinct ?club ?ar ?av where {
       ?club  a <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club> .
-      ?club  ?r "%s" 
-      ?club  ?ar ?v
+      ?club  ?r ?v
+      ?club  ?ar ?av
+      filter contains(?v,"%s") 
     }
     """ % name
 
