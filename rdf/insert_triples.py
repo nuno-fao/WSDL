@@ -7,11 +7,12 @@ f = open('../scraping/results/22_23.json')
 website = "https://www.zerozero.pt"
 file = json.load(f)
 print(file['FC Porto'][15])
-league = onto.League("Liga_Portugal", leagueName=["Liga Portugal"])
+league = onto.League("Liga_Portugal", leagueName=["Liga Portugal"], iden=["Liga_Portugal"])
 
-edition = onto.Edition("22_23", editionYear=["22_23"])
+edition = onto.Edition("22_23", editionYear=["22_23"], iden=["22_23"])
 edition.editionOfLeague = league
 
+i = 0
 for x in file:
     clube = onto.Club(file[x][15].get("Nome")[0].replace(" ", "_"), clubFullName=file[x][15].get("Nome"),
                       clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
@@ -22,15 +23,18 @@ for x in file:
                       clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
                       clubNickName=[file[x][15].get("Alcunhas")],
                       clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
+                      iden=[file[x][15].get("Nome")[0].replace(" ", "_")],
                       clubAssociation=file[x][15].get("Associação"))
 
-    squad = onto.Squad((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"), squadYear=[23])
+    squad = onto.Squad((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"), squadYear=[23],
+                       iden=[(file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")])
     squad.squadParticipatedIn = edition
     clube.clubHasSquad = [squad]
     competitionsWon = file["Benfica"][16]
     for c in competitionsWon:
         item = competitionsWon[c]
-        competition = onto.Competition(c.replace(" ", "_"), competitionName=[c], competitionNumber=[item])
+        competition = onto.Competition(c.replace(" ", "_"), competitionName=[c], competitionNumber=[item],
+                                       iden=[c.replace(" ", "_")])
         clube.clubWonCompetition.append(competition)
 
     player_info = file[x][13]
@@ -38,13 +42,16 @@ for x in file:
         y = player_info[player]
         player = onto.Player(y[0].replace(" ", "_"), playerimage=[y[11]], playername=[y[0]], playernationality=[y[4]],
                              playernaturalFrom=[y[6]],
+                             iden=[y[0].replace(" ", "_")],
                              playerposition=[y[7]], playerweight=[y[10]], playerheight=[y[9]], playerfoot=[y[8]],
                              playerbirthdate=[y[2]], playerage=[y[1]], playerbirthplace=[y[6]])
         player.playerPlayedForSquad = [squad]
         player_records = y[12]
         for name in player_records:
-            record = onto.Record(recordcompetitionname=[name], recordgames=[player_records[name][0]],
+            i += 1
+            record = onto.Record(str(i), recordcompetitionname=[name], recordgames=[player_records[name][0]],
                                  recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
+                                 iden=[i],
                                  recordassists=[player_records[name][3]])
             player.playerHasRecord = [record]
             record.recordForSquad = squad
@@ -55,7 +62,8 @@ for x in file:
             # print(competition_name)
             # print(player_item)
             player_competition = onto.Competition(competition_name.replace(" ", "_"),
-                                                  competitionName=[competition_name])
+                                                  competitionName=[competition_name],
+                                                  iden=[competition_name.replace(" ", "_")])
             for i in range(int(times)):
                 player.playerWonCompetition.append(player_competition)
 
@@ -64,7 +72,7 @@ editions = ["21_22", "20_21"]
 for ed in editions:
     f = open("../scraping/results/" + ed + ".json")
     file = json.load(f)
-    edition = onto.Edition(ed, editionYear=[ed])
+    edition = onto.Edition(ed, editionYear=[ed], iden=[ed])
     edition.editionOfLeague = league
 
     for x in file:
@@ -78,12 +86,14 @@ for ed in editions:
                               clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
                               clubNickName=[file[x][15].get("Alcunhas")],
                               clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
+                              iden=[(file[x][15].get("Nome")[0]).replace(" ", "_")],
                               clubAssociation=file[x][15].get("Associação"))
 
         else:
             clube = onto[(file[x][15].get("Nome")[0]).replace(" ", "_")]
 
-        squad = onto.Squad((file[x][15].get("Nome")[0] + ed).replace(" ", "_"), squadYear=[23])
+        squad = onto.Squad((file[x][15].get("Nome")[0] + ed).replace(" ", "_"), squadYear=[23],
+                           iden=[(file[x][15].get("Nome")[0] + ed).replace(" ", "_")])
         squad.squadParticipatedIn = edition
         clube.clubHasSquad.append(squad)
 
@@ -96,6 +106,7 @@ for ed in editions:
                                      playernationality=[y[4]], playernaturalFrom=[y[6]],
                                      playerposition=[y[7]], playerweight=[y[10]], playerheight=[y[9]],
                                      playerfoot=[y[8]], playerbirthdate=[y[2]], playerage=[y[1]],
+                                     iden=[y[0].replace(" ", "_")],
                                      playerbirthplace=[y[6]])
             else:
                 player = onto[y[0].replace(" ", "_")]
@@ -103,8 +114,10 @@ for ed in editions:
             player.playerPlayedForSquad.append(squad)
             player_records = y[12]
             for name in player_records:
-                record = onto.Record(recordcompetitionname=[name], recordgames=[player_records[name][0]],
+                i += 1
+                record = onto.Record(str(i), recordcompetitionname=[name], recordgames=[player_records[name][0]],
                                      recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
+                                     iden=[i],
                                      recordassists=[player_records[name][3]])
                 player.playerHasRecord = [record]
                 record.recordForSquad = squad

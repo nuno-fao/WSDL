@@ -7,6 +7,8 @@ from urllib.parse import unquote_plus
 app = Flask(__name__)
 app.secret_key = "key_super_secreta_não_digam_a_ninguém"
 
+onto = get_ontology("../rdf/result").load()
+
 
 @app.route("/")  # this sets the route to this page
 def index():
@@ -83,20 +85,59 @@ def toJson(entitiesList):
     for c in entitiesList:
         line = []
         for e in c:
-            try:
-                line.append(e.name)
-            except:
+            if type(e) == type(2):
                 line.append(e)
+            elif type(e) == type("s"):
+                line.append(e)
+            else:
+                a = "http://localhost:5000/api/"
+                line.append(a + e.name)
         out.append(line)
-    out = json.dumps(out)
+    # out = json.dumps(out)
+
     return out
 
 
+@app.route("/api/<id>")
+def api(id):
+    q1 = """
+    select distinct ?ent ?r ?v where {
+      ?ent  <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+      ?ent ?r ?v  
+    }
+    """ % id
+
+    q2 = """
+    select distinct ?ent ?r ?v where {
+      ?ent  <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+      ?v ?r ?ent  
+    }
+    """ % id
+
+    entry1 = list(default_world.sparql(q1))
+    entry2 = list(default_world.sparql(q2))
+    entry1 = toJson(entry1)
+    entry2 = toJson(entry2)
+    entry = entry1 + entry2
+
+    out = {}
+    for e in entry:
+        if not (e[0] in out.keys()):
+            out[e[0]] = {}
+        if not (e[1] in out[e[0]].keys()):
+            out[e[0]][e[1]] = []
+        out[e[0]][e[1]].append(e[2])
+
+    print(out)
+    out = json.dumps(out)
+    out = json.loads(out)
+    return (out)
+
+
 @app.route("/club/<name>")
-def clup(name):
+def club(name):
     name = unquote_plus(name)
 
-    get_ontology("../rdf/result").load()
     q = """
     select distinct ?club ?ar ?av where {
       ?club  a <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club> .
@@ -104,7 +145,7 @@ def clup(name):
       ?club  ?ar ?av
       filter contains(?v,"%s") 
     }
-    """
+    """ % name
 
     club = list(default_world.sparql(q))
     club = toJson(club)

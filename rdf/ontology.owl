@@ -440,6 +440,14 @@
         <rdfs:domain rdf:resource="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Edition"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     </owl:DatatypeProperty>
+    
+    
+    <!-- http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
 
     <!--
     ///////////////////////////////////////////////////////////////////////////////////////
