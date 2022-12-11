@@ -39,7 +39,73 @@ def league(id, season):
 @app.route("/player/<id>")
 def player(id):
 
-    return render_template('player.html', id=id)
+    player_example = ["12",
+                "Zaidu Sanusi",
+                "25 anos",
+                "1997-06-13",
+                "",
+                "Nig\u00e9ria",
+                "",
+                "Lagos",
+                "Defesa (Defesa Esquerdo)",
+                "Esquerdo",
+                "182 cm",
+                "76 kg",
+                "https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png",
+                {
+                    "Liga dos Campe\u00f5es": [
+                        "6",
+                        "412",
+                        "1",
+                        "0"
+                    ],
+                    "Liga Portuguesa": [
+                        "9",
+                        "620",
+                        "0",
+                        "0"
+                    ],
+                    "Superta\u00e7a": [
+                        "1",
+                        "90",
+                        "0",
+                        "0"
+                    ],
+                    "Total": [
+                        "16",
+                        "1122",
+                        "1",
+                        "0"
+                    ]
+                },
+                {
+                    "Liga Portuguesa": "1",
+                    "Ta\u00e7a de Portugal": "1",
+                    "Superta\u00e7a C\u00e2ndido de Oliveira": "2"
+                },
+                {
+                    "2022/23": [
+                        "FC Porto",
+                        "16",
+                        "1",
+                        "0"
+                    ],
+                    "2021/22": [
+                        "FC Porto",
+                        "40",
+                        "3",
+                        "0"
+                    ],
+                    "2020/21": [
+                        "FC Porto",
+                        "41",
+                        "2",
+                        "1"
+                    ]
+                }
+            ]
+
+    return render_template('player.html', player=player_example)
 
 if __name__ == "__main__":
     app.run(debug=True)
