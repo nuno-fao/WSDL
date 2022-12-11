@@ -1,0 +1,1 @@
+[{"goals/game": "2,42", "victories_home": "42%", "Ties": "25%", "victories_away": "33%", "logo": "https://www.zerozero.pt/img/logos/edicoes/70079_imgbank_.png"}, {"Pedro Gon\u00e7alves": "23", "Haris Seferovic": "22", "Mehdi Taremi": "16"}, {"Mehdi Taremi": "11"}]
