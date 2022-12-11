@@ -1,5 +1,5 @@
 import json
-
+import csv
 from flask import Flask, render_template, request
 from owlready2 import *
 from urllib.parse import unquote_plus
@@ -111,7 +111,22 @@ def clup(name):
         
 @app.route("/league/<id>_<season>")
 def league(id, season):
-    return render_template('league.html', id=id, season=season)
+
+    table= [ ["1", "", "Benfica", "37", "13", "12", "1", "0", "37", "7", "+30"],
+    ["2", "", "FC Porto", "29", "13", "9", "2", "2", "31", "9","+22",]]
+
+    games = []
+
+    with open('scraping\\results\\P1.csv', newline='') as f:
+        reader = csv.DictReader(f)
+        i=0
+        for row in reader:
+            i+=1
+            games.append([row['Date'],row['Time'],row['HomeTeam'],row['AwayTeam'],row['FTHG'],row['FTAG']])
+            if i == 25:
+                break
+
+    return render_template('league.html', table=table, games=games)
 
 
 @app.route("/player/<id>")
