@@ -84,7 +84,7 @@ def toJson(entitiesList):
         line = []
         for e in c:
             try:
-                line.append(e.iri)
+                line.append(e.name)
             except:
                 line.append(e)
         out.append(line)
@@ -98,12 +98,10 @@ def clup(name):
 
     get_ontology("../rdf/result").load()
     q = """
-    select distinct ?club ?ar ?v where {
-      ?club  a <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club> .
-      ?club  ?r "%s" 
-      ?club  ?ar ?v
+    select distinct ?club ?r where {
+      ?club  ?r "http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Futebol_Clube_do_Porto" .
     }
-    """ % name
+    """
 
     club = list(default_world.sparql(q))
     club = toJson(club)
