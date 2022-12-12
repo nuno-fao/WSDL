@@ -7,8 +7,10 @@
             </div>
             <div class="col-md-7">
                 <div class="card-body">
-                    <h5 class="card-title">{{ club["name"] }}</h5>
-                    <p class="card-text">
+                    <h5 class="card-title">
+                        <a href="http://localhost:5000/club/{{ club["id"] }}">{{ club["name"] }}</a>
+                    </h5>
+                    <p class=" card-text">
                         {{ club["city"] }}, {{ club["country"] }}
                     </p>
                     <p>

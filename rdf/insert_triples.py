@@ -27,7 +27,7 @@ for x in file:
                       iden=[unidecode(file[x][15].get("Nome")[0].replace(" ", "_"))],
                       clubAssociation=file[x][15].get("Associação"))
 
-    squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")), squadYear=[23],
+    squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")), squadYear=["22_23"],
                        iden=[unidecode((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"))])
     squad.squadParticipatedIn = edition
     clube.clubHasSquad.append(squad)
@@ -96,7 +96,7 @@ for ed in editions:
         else:
             clube = onto[(file[x][15].get("Nome")[0]).replace(" ", "_")]
 
-        squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + ed).replace(" ", "_")), squadYear=[23],
+        squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + ed).replace(" ", "_")), squadYear=[edition.name],
                            iden=[unidecode((file[x][15].get("Nome")[0] + ed).replace(" ", "_"))])
         squad.squadParticipatedIn = edition
         clube.clubHasSquad.append(squad)

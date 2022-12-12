@@ -25,13 +25,14 @@ def results():
     results = {}
 
     club = """
-        select distinct ?image ?name ?country ?city ?year_of_foundation where {
+        select distinct ?image ?name ?country ?city ?year_of_foundation ?id where {
           ?ent ?r ?v .
           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubImage> ?image .
           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?name .
           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCountry> ?country .
           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCity> ?city .
           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFoundationYear> ?year_of_foundation .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?id .
           filter contains(?v,"%s")
         }
         """ % query
@@ -46,20 +47,27 @@ def results():
             "country": club[2],
             "city": club[3],
             "year_of_foundation": club[4],
+            "id": club[5],
         })
     if len(out_club) > 0:
         results["Team"] = club_results
 
     player = """
-            select distinct ?image ?name ?position ?birthdate where {
+            select distinct ?image ?name ?position ?birthdate ?id ?clubName ?clubId where {
               ?ent ?r ?v .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage> ?image .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername> ?name .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition> ?position .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate> ?birthdate .
-              filter contains(?v,"%s")
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?id .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+              ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
+              ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?clubName .
+              ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?clubId .
+              
+              filter (contains(?v,"%s") || contains(?clubName,"%s"))
             }
-            """ % query
+            """ % (query, query)
 
     entry_player = list(default_world.sparql(player))
     out_player = treat(entry_player)
@@ -70,17 +78,23 @@ def results():
             "name": player[1],
             "position": player[2],
             "birthdate": player[3],
+            "id": player[4],
+            "clubName": player[5],
+            "clubId": player[6]
         })
     if len(out_player) > 0:
         results["Player"] = player_results
 
-    if "category_input" in args and args["category_input"] in results:
-        results = {args["category_input"]: results[args["category_input"]]}
-        active = args["category_input"]
+    if len(results) == 0:
+        results = {"Team": [], "Player": []}
     else:
-        for i in results.keys():
-            active = i
-            break
+        if "category_input" in args and args["category_input"] in results:
+            results = {args["category_input"]: results[args["category_input"]]}
+            active = args["category_input"]
+        else:
+            for i in results.keys():
+                active = i
+                break
 
     return render_template('results.html', query=query, results=results, active=active)
 
@@ -223,73 +237,95 @@ def league(id, season):
 
 @app.route("/player/<id>")
 def player(id):
-    player_example = ["12",
-                      "Zaidu Sanusi",
-                      "25 anos",
-                      "1997-06-13",
-                      "",
-                      "Nig\u00e9ria",
-                      "",
-                      "Lagos",
-                      "Defesa (Defesa Esquerdo)",
-                      "Esquerdo",
-                      "182 cm",
-                      "76 kg",
-                      "https://static-img.zz.pt/jogadores/53/526053_20220817115014_zaidu_sanusi.png",
-                      {
-                          "Liga dos Campe\u00f5es": [
-                              "6",
-                              "412",
-                              "1",
-                              "0"
-                          ],
-                          "Liga Portuguesa": [
-                              "9",
-                              "620",
-                              "0",
-                              "0"
-                          ],
-                          "Superta\u00e7a": [
-                              "1",
-                              "90",
-                              "0",
-                              "0"
-                          ],
-                          "Total": [
-                              "16",
-                              "1122",
-                              "1",
-                              "0"
-                          ]
-                      },
-                      {
-                          "Liga Portuguesa": "1",
-                          "Ta\u00e7a de Portugal": "1",
-                          "Superta\u00e7a C\u00e2ndido de Oliveira": "2"
-                      },
-                      {
-                          "2022/23": [
-                              "FC Porto",
-                              "16",
-                              "1",
-                              "0"
-                          ],
-                          "2021/22": [
-                              "FC Porto",
-                              "40",
-                              "3",
-                              "0"
-                          ],
-                          "2020/21": [
-                              "FC Porto",
-                              "41",
-                              "2",
-                              "1"
-                          ]
-                      }
-                      ]
+    player = """
+                select distinct ?name ?name ?age ?birthdate ?name ?naturalFrom ?name ?birthplace ?position ?foot ?height ?weight ?image where {
+                  ?ent ?r ?v .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername> ?name .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername> ?name .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate> ?birthdate .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerage> ?age .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playernationality> ?naturalFrom .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthplace> ?birthplace .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition> ?position .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerfoot> ?foot .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerheight> ?height .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerweight> ?weight .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage> ?image .
 
-    return render_template('player.html', player=player_example)
+                  filter contains(?v,"%s")
+                }
+                """ % id
+
+    entry_player = list(default_world.sparql(player))
+    out_player = treat(entry_player)[0]
+
+    competition = """
+                    select distinct  ?competitionName where {
+                      ?ent ?r ?v .
+                      ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerWonCompetition> ?competition .
+                      ?competition <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#competitionName> ?competitionName .
+
+                      filter contains(?v,"%s")
+                    }
+                    """ % id
+
+    competition = list(default_world.sparql(competition))
+
+    clubs = """
+                    select ?clubFullName ?year ?assists ?games ?goals ?minutes where {
+                      ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+                      ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+                      ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
+                      ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?clubFullName .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSquad> ?squad .
+                      ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> ?year .
+                      ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord> ?record .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordassists> ?assists .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgames> ?games .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoals> ?goals .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordminutes> ?minutes .
+                      ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordcompetitionname> "Total" .
+                    }
+                    """ % id
+
+    clubs = list(default_world.sparql(clubs))
+
+    clubs_map = {}
+    for entry in clubs:
+        clubs_map[entry[1].replace("_", "/")] = [entry[0], entry[3], entry[4], entry[2], entry[5]]
+
+    current_season = """
+                        select ?clubFullName ?assists ?games ?goals ?minutes ?competition where {
+                          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+                          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+                          ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
+                          ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?clubFullName .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSquad> ?squad .
+                          ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> "22_23" .
+                          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord> ?record .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordassists> ?assists .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgames> ?games .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoals> ?goals .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordminutes> ?minutes .
+                          ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordcompetitionname> ?competition .
+                          
+                        }
+                        """ % id
+    current_season = list(default_world.sparql(current_season))
+
+    print(current_season)
+
+    out_player += [{
+        "Liga Portuguesa": ["1"],
+        "Ta\u00e7a de Portugal": "1",
+        "Superta\u00e7a C\u00e2ndido de Oliveira": "2"
+    }, ]
+
+    out_player += [competition]
+
+    out_player += [clubs_map]
+
+    return render_template('player.html', player=out_player)
 
 
 def ceiling(nr, div):

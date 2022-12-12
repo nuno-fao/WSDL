@@ -1,100 +1,90 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>FootyPedia - Player {{id}}</title>
-<link href="../static/css/player.css" rel="stylesheet" crossorigin="anonymous">
+    <title>FootyPedia - Player {{ id }}</title>
+    <link href="../static/css/player.css" rel="stylesheet" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-<div class="d-flex container " style="align-items: flex-start;">
+    <div class="d-flex container " style="align-items: flex-start;">
 
-    <div class="d-flex flex-column p-3 bg-light w-25 ">
-        <h1 class="m-auto">{{player[1]}}</h1>
-        <hr>
+        <div class="d-flex flex-column p-3 bg-light w-25 ">
+            <h1 class="m-auto">{{ player[1] }}</h1>
+            <hr>
 
-        <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
-            <img src={{player[12]}} class="m-auto"
-                style="width: auto; height: 200px; object-fit: cover;" />
+            <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
+                <img src={{ player[12] }} class="m-auto"
+                     style="width: auto; height: 200px; object-fit: cover;"/>
+            </div>
+
+            <div style="margin-top: 20px">
+
+                <div class="bio-line row">
+
+                    <div class="bio col-6">
+                        <span>Age</span>
+                        {{ player[2] }}
+                    </div>
+
+                    <div class="bio col-6">
+                        <span>Birthdate</span>
+                        {{ player[3] }}
+                    </div>
+
+                </div>
+
+                <div class="bio-line row">
+
+                    <div class="bio col-6">
+                        <span>Nationality</span>
+                        {{ player[5] }}
+                    </div>
+
+                </div>
+
+                <div class="bio bio-line">
+                    <span>Naturality</span>
+                    {{ player[7] }}
+
+                </div>
+
+
+                <div class="bio-line row">
+
+                    <div class="bio col-6">
+                        <span>Position</span>
+                        {{ player[8] }}
+                    </div>
+
+                </div>
+                <div class="bio bio-line">
+                    <span>Preferred Foot</span>
+                    {{ player[9] }}
+                </div>
+
+                <div class="bio-line row">
+
+                    <div class="bio col-6">
+                        <span>Height</span>
+                        {{ player[10] }}
+                    </div>
+
+                    <div class="bio col-6">
+                        <span>Weight</span>
+                        {{ player[11] }}
+                    </div>
+
+                </div>
+
+            </div>
         </div>
 
-        <div style="margin-top: 20px">
+        <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 pb-5 ps-5 pe-5 pt-2">
 
-            <div class="bio-line row">
+            <h2>This Season</h2>
 
-                <div class="bio col-6">
-                    <span>Age</span>
-                    {{player[2]}}
-                </div>
-
-                <div class="bio col-6">
-                    <span>Birthdate</span>
-                    {{player[3]}}
-                </div>
-
-            </div>
-
-            <div class="bio-line row">
-
-                <div class="bio col-6">
-                    <span>Nationality</span>
-                    {{player[5]}}
-                </div>
-
-                <div class="bio col-6">
-                    <span>Second</span>
-                    {{player[6]}}
-                </div>
-
-            </div>
-
-            <div class="bio bio-line">
-                <span>Naturality</span>
-                {{player[7]}}
-                
-            </div>
-
-
-            <div class="bio-line row">
-
-                <div class="bio col-6">
-                    <span>Position</span>
-                    {{player[8]}}
-                </div>
-
-                <div class="bio col-6">
-                    <span>Number</span>
-                    {{player[0]}}
-                </div>
-
-            </div>
-            <div class="bio bio-line">
-                <span>Preferred Foot</span>
-                {{player[9]}}
-            </div>
-
-            <div class="bio-line row">
-
-                <div class="bio col-6">
-                    <span>Height</span>
-                    {{player[10]}} 
-                </div>
-
-                <div class="bio col-6">
-                    <span>Second</span>
-                    {{player[11]}}
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-
-    <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 pb-5 ps-5 pe-5 pt-2">
-
-        <h2>This Season</h2>
-
-        <table class="table table-hover table-sm">
-            <thead class="bg-light">
+            <table class="table table-hover table-sm">
+                <thead class="bg-light">
                 <tr>
                     <th scope="col">Competition</th>
                     <th scope="col">J</th>
@@ -102,73 +92,72 @@
                     <th scope="col">GM</th>
                     <th scope="colr">AST</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
                 {% for key, value in player[13].items() %}
-                <tr>
-                    <td>{{key}}</td>
-                    <td>{{value[0]}}</td>
-                    <td>{{value[1]}}</td>
-                    <td>{{value[2]}}</td>
-                    <td>{{value[3]}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value[0] }}</td>
+                        <td>{{ value[1] }}</td>
+                        <td>{{ value[2] }}</td>
+                        <td>{{ value[3] }}</td>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-       <hr>
+            <hr>
 
-       <h2>History</h2>
+            <h2>History</h2>
 
-        <table class="table table-hover table-sm">
-            <thead class="bg-light">
+            <table class="table table-hover table-sm">
+                <thead class="bg-light">
                 <tr>
                     <th scope="col">Season</th>
                     <th scope="col">Club</th>
                     <th scope="col">J</th>
-                    <th scope="col">G</th>
+                    <th scope="col">GM</th>
                     <th scope="col">AST</th>
+                    <th scope="col">M</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
 
                 {% for key, value in player[15].items() %}
-                <tr>
-                    <td>{{key}}</td>
-                    <td>{{value[0]}}</td>
-                    <td>{{value[1]}}</td>
-                    <td>{{value[2]}}</td>
-                    <td>{{value[3]}}</td>
-                </tr>
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value[0] }}</td>
+                        <td>{{ value[1] }}</td>
+                        <td>{{ value[2] }}</td>
+                        <td>{{ value[3] }}</td>
+                        <td>{{ value[4] }}</td>
+                    </tr>
                 {% endfor %}
-                
-                
-            </tbody>
-        </table>
 
 
+                </tbody>
+            </table>
 
-        <h2>Titles</h2>
 
-        <table class="table table-hover table-sm table-borderless">
-            <thead class="bg-light">
+            <h2>Titles</h2>
+
+            <table class="table table-hover table-sm table-borderless">
+                <thead class="bg-light">
                 <tr>
-                    <th scope="col" >Nome</th>
-                    <th scope="col" >Número</th>
+                    <th scope="col">Nome</th>
                 </tr>
-            </thead>
-            <tbody>
-                {% for key, value in player[14].items() %}
-                <tr>
-                    <td>{{key}}</td>
-                    <td>{{value}}</td>
-                </tr>
+                </thead>
+                <tbody>
+                {% for value in player[14] %}
+                    <tr>
+                        <td>{{ value[0] }}</td>
+                    </tr>
                 {% endfor %}
-            </tbody>
-        </table>
+                </tbody>
+            </table>
 
-        <hr>
+            <hr>
 
-</div>
+        </div>
 {% endblock %}
