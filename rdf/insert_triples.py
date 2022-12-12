@@ -12,7 +12,7 @@ league = onto.League("Liga_Portugal", leagueName=["Liga Portugal"], iden=["Liga_
 edition = onto.Edition("22_23", editionYear=["22_23"], iden=["22_23"])
 edition.editionOfLeague = league
 
-i = 0
+idenCounter = 0
 for x in file:
     clube = onto.Club(file[x][15].get("Nome")[0].replace(" ", "_"), clubFullName=file[x][15].get("Nome"),
                       clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
@@ -30,7 +30,7 @@ for x in file:
                        iden=[(file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")])
     squad.squadParticipatedIn = edition
     clube.clubHasSquad = [squad]
-    competitionsWon = file["Benfica"][16]
+    competitionsWon = file[x][16]
     for c in competitionsWon:
         item = competitionsWon[c]
         competition = onto.Competition(c.replace(" ", "_"), competitionName=[c], competitionNumber=[item],
@@ -48,10 +48,11 @@ for x in file:
         player.playerPlayedForSquad = [squad]
         player_records = y[12]
         for name in player_records:
-            i += 1
-            record = onto.Record(str(i), recordcompetitionname=[name], recordgames=[player_records[name][0]],
+            idenCounter += 1
+            record = onto.Record("r_" + str(idenCounter), recordcompetitionname=[name],
+                                 recordgames=[player_records[name][0]],
                                  recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
-                                 iden=[i],
+                                 iden=["r_" + str(idenCounter)],
                                  recordassists=[player_records[name][3]])
             player.playerHasRecord = [record]
             record.recordForSquad = squad
@@ -114,10 +115,11 @@ for ed in editions:
             player.playerPlayedForSquad.append(squad)
             player_records = y[12]
             for name in player_records:
-                i += 1
-                record = onto.Record(str(i), recordcompetitionname=[name], recordgames=[player_records[name][0]],
+                idenCounter += 1
+                record = onto.Record("r_" + str(idenCounter), recordcompetitionname=[name],
+                                     recordgames=[player_records[name][0]],
                                      recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
-                                     iden=[i],
+                                     iden=["r_" + str(idenCounter)],
                                      recordassists=[player_records[name][3]])
                 player.playerHasRecord = [record]
                 record.recordForSquad = squad

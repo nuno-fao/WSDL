@@ -145,7 +145,7 @@ def api():
 @app.route("/api/id/<id>")
 def apiID(id):
     q1 = """
-    select distinct ?ent ?r ?v where {
+    select ?ent ?r ?v where {
       ?ent  <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
       ?ent ?r ?v  
     }
