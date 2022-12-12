@@ -22,61 +22,65 @@ def results():
     query = ""
     if "query" in args:
         query = args["query"]
+    results = {}
 
-    results = {
-        "Team": [
-            {
-                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
-                "name": "Sporting Clube de Portugal",
-                "country": "Portugal",
-                "city": "Lisboa",
-                "year_of_foundation": "1906-07-01"
-            },
-            {
-                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
-                "name": "Sporting Clube de Portugal",
-                "country": "Portugal",
-                "city": "Lisboa",
-                "year_of_foundation": "1906-07-01"
-            },
-            {
-                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
-                "name": "Sporting Clube de Portugal",
-                "country": "Portugal",
-                "city": "Lisboa",
-                "year_of_foundation": "1906-07-01"
-            },
-            {
-                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
-                "name": "Sporting Clube de Portugal",
-                "country": "Portugal",
-                "city": "Lisboa",
-                "year_of_foundation": "1906-07-01"
-            },
-            {
-                "image": "https://www.zerozero.pt/img/logos/equipas/16_imgbank.png",
-                "name": "Sporting Clube de Portugal",
-                "country": "Portugal",
-                "city": "Lisboa",
-                "year_of_foundation": "1906-07-01"
-            },
-        ],
-        "Player": [
-            {
-                "image": "https://static-img.zz.pt/jogadores/31/28531_20210919193151_rui_patricio.png",
-                "name": "Ruí Patricio",
-                "position": "GK",
-                "birthdate": "1988-02-15"
+    club = """
+        select distinct ?image ?name ?country ?city ?year_of_foundation where {
+          ?ent ?r ?v .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubImage> ?image .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?name .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCountry> ?country .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCity> ?city .
+          ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFoundationYear> ?year_of_foundation .
+          filter contains(?v,"%s")
+        }
+        """ % query
+
+    entry_club = list(default_world.sparql(club))
+    out_club = treat(entry_club)
+    club_results = []
+    for club in out_club:
+        club_results.append({
+            "image": club[0],
+            "name": club[1],
+            "country": club[2],
+            "city": club[3],
+            "year_of_foundation": club[4],
+        })
+    if len(out_club) > 0:
+        results["Team"] = club_results
+
+    player = """
+            select distinct ?image ?name ?position ?birthdate where {
+              ?ent ?r ?v .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage> ?image .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername> ?name .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition> ?position .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate> ?birthdate .
+              filter contains(?v,"%s")
             }
-        ],
-        "League": []
-    }
+            """ % query
+
+    entry_player = list(default_world.sparql(player))
+    out_player = treat(entry_player)
+    player_results = []
+    for player in out_player:
+        player_results.append({
+            "image": player[0],
+            "name": player[1],
+            "position": player[2],
+            "birthdate": player[3],
+        })
+    if len(out_player) > 0:
+        results["Player"] = player_results
 
     if "category_input" in args and args["category_input"] in results:
         results = {args["category_input"]: results[args["category_input"]]}
         active = args["category_input"]
     else:
-        active = "Team"
+        for i in results.keys():
+            active = i
+            break
 
     return render_template('results.html', query=query, results=results, active=active)
 

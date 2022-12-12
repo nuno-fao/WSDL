@@ -1,93 +1,90 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>FootyPedia - League {{id}}</title>
-<link href="../static/css/league.css" rel="stylesheet" crossorigin="anonymous">
+    <title>FootyPedia - League {{ id }}</title>
+    <link href="../static/css/league.css" rel="stylesheet" crossorigin="anonymous">
 {% endblock %}
 
 {% block body %}
-<div class="d-flex container " style="align-items: flex-start;">
+    <div class="d-flex container " style="align-items: flex-start;">
 
-    <div class="d-flex flex-column p-3 bg-light w-25 ">
-        <h1 class="m-auto">League</h1>
-        <h1 class="m-auto">Portugal bwin</h1>
+        <div class="d-flex flex-column p-3 bg-light w-25 ">
+            <h1 class="m-auto">League</h1>
+            <h1 class="m-auto">Portugal bwin</h1>
 
+            <hr>
 
-        <hr>
-
-        <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
-            <img src="https://www.zerozero.pt/img/logos/edicoes/156405_imgbank_.png" class="m-auto"
-                style="width: auto; height: 200px; object-fit: cover;" />
-        </div>
-
-        <div class="mt-5">
-            <div class="bio bio-line">
-                <span>Best Scorers</span>
-                <div class="d-flex flex-row m-3" style="justify-content: space-between;">
-                    <div class="mt-auto mb-auto" >Gonçalo Ramos</div>
-                    <div class="number">9</div>
-                </div>
-                <div class="d-flex flex-row m-3" style="justify-content: space-between;">
-                    <div class="mt-auto mb-auto" >Fran Navarro</div>
-                    <div class="number">8</div>
-                </div>
-                <div class="d-flex flex-row m-3" style="justify-content: space-between;">
-                    <div class="mt-auto mb-auto" >Pedro Gonçalves</div>
-                    <div class="number">7</div>
-                </div>
-                
+            <div class="d-flex m-auto " style="width: 200px; height: 200px; justify-content: center">
+                <img src="https://www.zerozero.pt/img/logos/edicoes/156405_imgbank_.png" class="m-auto"
+                     style="width: auto; height: 200px; object-fit: cover;"/>
             </div>
+
+            <div class="mt-5">
+                <div class="bio bio-line">
+                    <span>Best Scorers</span>
+                    <div class="d-flex flex-row m-3" style="justify-content: space-between;">
+                        <div class="mt-auto mb-auto">Gonçalo Ramos</div>
+                        <div class="number">9</div>
+                    </div>
+                    <div class="d-flex flex-row m-3" style="justify-content: space-between;">
+                        <div class="mt-auto mb-auto">Fran Navarro</div>
+                        <div class="number">8</div>
+                    </div>
+                    <div class="d-flex flex-row m-3" style="justify-content: space-between;">
+                        <div class="mt-auto mb-auto">Pedro Gonçalves</div>
+                        <div class="number">7</div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mt-3">
+                <table class="table table-borderless table-sm text-center">
+                    <thead>
+                    <tr>
+                        <th scope="col" class="table-title text-center">goals/game</th>
+                        <th scope="col" class="table-title text-center">home wins</th>
+                        <th scope="col" class="table-title text-center">draws</th>
+                        <th scope="col" class="table-title text-center">away wins</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>2,50</td>
+                        <td>43%</td>
+                        <td>19%</td>
+                        <td>38%</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
         </div>
 
-        <div class="mt-3">
-            <table class="table table-borderless table-sm text-center">
-                <thead>
-                  <tr>
-                    <th scope="col" class="table-title text-center">goals/game</th>
-                    <th scope="col" class="table-title text-center">home wins</th>
-                    <th scope="col" class="table-title text-center">draws</th>
-                    <th scope="col" class="table-title text-center">away wins</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>2,50</td>
-                    <td>43%</td>
-                    <td>19%</td>
-                    <td>38%</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+        <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 pb-5 ps-5 pe-5 pt-2">
 
-        
+            <!-- Pills navs -->
+            <ul class="nav nav-pills nav-tabs mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab"
+                       aria-controls="ex1-pills-1" aria-selected="true">Table</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab"
+                       aria-controls="ex1-pills-2" aria-selected="false">Games</a>
+                </li>
+            </ul>
+            <!-- Pills navs -->
 
-        
+            <!-- Pills content -->
+            <div class="tab-content" id="ex1-content" style="width:100%">
+                <div class="tab-pane fade show active align-items-center" id="ex1-pills-1" role="tabpanel"
+                     aria-labelledby="ex1-tab-1">
+                    <h2 style="text-align: center">Classification</h2>
 
-    </div>
-
-    <div class="d-flex flex-column bg-light align-items-center flex-fill ms-5 pb-5 ps-5 pe-5 pt-2">
-
-        <!-- Pills navs -->
-        <ul class="nav nav-pills nav-tabs mb-3" id="ex1" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="pill" href="#ex1-pills-1" role="tab"
-                    aria-controls="ex1-pills-1" aria-selected="true">Table</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="pill" href="#ex1-pills-2" role="tab"
-                    aria-controls="ex1-pills-2" aria-selected="false">Games</a>
-            </li>
-        </ul>
-        <!-- Pills navs -->
-
-        <!-- Pills content -->
-        <div class="tab-content" id="ex1-content" style="width:100%">
-            <div class="tab-pane fade show active align-items-center" id="ex1-pills-1" role="tabpanel" aria-labelledby="ex1-tab-1">
-                <h2 style="text-align: center">Classification</h2>
-
-                <table class="table table-hover table-sm" >
-                    <thead class="bg-light">
+                    <table class="table table-hover table-sm">
+                        <thead class="bg-light">
                         <tr>
                             <th scope="col" style="width: 5%"></th>
                             <th scope="col" style="width: 25%"></th>
@@ -100,31 +97,31 @@
                             <th scope="col" style="width: 8.75%">GS</th>
                             <th scope="col" style="width: 8.75%">DG</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {% for item in table %}
-                        <tr>
-                            <td>{{item[0]}}</td>
-                            <td>{{item[2]}}</td>
-                            <td>{{item[3]}}</td>
-                            <td>{{item[4]}}</td>
-                            <td>{{item[5]}}</td>
-                            <td>{{item[6]}}</td>
-                            <td>{{item[7]}}</td>
-                            <td>{{item[8]}}</td>
-                            <td>{{item[9]}}</td>
-                            <td>{{item[10]}}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ item[0] }}</td>
+                                <td>{{ item[2] }}</td>
+                                <td>{{ item[3] }}</td>
+                                <td>{{ item[4] }}</td>
+                                <td>{{ item[5] }}</td>
+                                <td>{{ item[6] }}</td>
+                                <td>{{ item[7] }}</td>
+                                <td>{{ item[8] }}</td>
+                                <td>{{ item[9] }}</td>
+                                <td>{{ item[10] }}</td>
+                            </tr>
                         {% endfor %}
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                <h2 style="text-align: center;">Games</h2>
 
-                <table class="table table-hover table-sm text-center table-striped">
-                    <thead class="bg-light" >
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="ex1-pills-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                    <h2 style="text-align: center;">Games</h2>
+
+                    <table class="table table-hover table-sm text-center table-striped">
+                        <thead class="bg-light">
                         <tr>
                             <th scope="col" class="text-center" style="width: 10%">Date</th>
                             <th scope="col" class="text-center" style="width: 10%">Time</th>
@@ -132,26 +129,26 @@
                             <th scope="col" class="text-center" style="width: 10%">FT</th>
                             <th scope="col" class="text-center" style="width: 35%">Away</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {% for game in games %}
-                        <tr>
-                            <td>{{game[0]}}</td>
-                            <td>{{game[1]}}</td>
-                            <td>{{game[2]}}</td>
-                            <td>{{game[4]}}-{{game[5]}}</td>
-                            <td>{{game[3]}}</td>
-                        </tr>
+                            <tr>
+                                <td>{{ game[0] }}</td>
+                                <td>{{ game[1] }}</td>
+                                <td>{{ game[2] }}</td>
+                                <td>{{ game[4] }}-{{ game[5] }}</td>
+                                <td>{{ game[3] }}</td>
+                            </tr>
                         {% endfor %}
-                    
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- Pills content -->
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Pills content -->
+
+
+        </div>
 
     </div>
-
-</div>
 {% endblock %}
