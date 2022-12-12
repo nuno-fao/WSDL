@@ -29,7 +29,7 @@ for x in file:
     squad = onto.Squad((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"), squadYear=[23],
                        iden=[(file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")])
     squad.squadParticipatedIn = edition
-    clube.clubHasSquad = [squad]
+    clube.clubHasSquad.append(squad)
     competitionsWon = file[x][16]
     for c in competitionsWon:
         item = competitionsWon[c]
@@ -45,7 +45,7 @@ for x in file:
                              iden=[y[0].replace(" ", "_")],
                              playerposition=[y[7]], playerweight=[y[10]], playerheight=[y[9]], playerfoot=[y[8]],
                              playerbirthdate=[y[2]], playerage=[y[1]], playerbirthplace=[y[6]])
-        player.playerPlayedForSquad = [squad]
+        player.playerPlayedForSquad.append(squad)
         player_records = y[12]
         for name in player_records:
             idenCounter += 1
@@ -54,7 +54,7 @@ for x in file:
                                  recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
                                  iden=["r_" + str(idenCounter)],
                                  recordassists=[player_records[name][3]])
-            player.playerHasRecord = [record]
+            player.playerHasRecord.append(record)
             record.recordForSquad = squad
 
         player_titles = y[13]
@@ -100,7 +100,6 @@ for ed in editions:
 
         player_info = file[x][13]
         for player in player_info:
-
             y = player_info[player]
             if onto[y[0].replace(" ", "_")] == None:
                 player = onto.Player(y[0].replace(" ", "_"), playerimage=[y[11]], playername=[y[0]],
@@ -121,8 +120,8 @@ for ed in editions:
                                      recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
                                      iden=["r_" + str(idenCounter)],
                                      recordassists=[player_records[name][3]])
-                player.playerHasRecord = [record]
                 record.recordForSquad = squad
+                player.playerHasRecord.append(record)
 
 for i in onto.Club.instances():
     print(i)
