@@ -1,16 +1,15 @@
 {% for club in t %}
     <div class="card mb-3 col-5">
         <div class="row g-0">
-            <div class="col-md-4 d-flex my-3" style="width: 200px; height: 200px; justify-content: center">
-                <img src="{{ club["image"] }}" class="m-auto"
+            <div class="col-md-4 d-flex my-3" style="width: 200px; height: 160px; justify-content: center">
+                <img src="https://www.zerozero.pt/img/logos/edicoes/156405_imgbank_.png" class="m-auto"
                      style="width: auto; height: 150px; object-fit: cover;"/>
             </div>
             <div class="col-md-7">
                 <div class="card-body">
-                    <h5 class="card-title">{{ club }}</h5>
-                    <p>
-                        <small class="text-muted">{{ club["year_of_foundation"] }}</small>
-                    </p>
+                    <h5 class="card-title"><a
+                            href="http://localhost:5000/league/league_portugal">{{ club }}</a>
+                    </h5>
                 </div>
             </div>
         </div>
