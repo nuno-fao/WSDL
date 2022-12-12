@@ -61,6 +61,7 @@ def results():
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate> ?birthdate .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?id .
               ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+              ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> "22_23" .  
               ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
               ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?clubName .
               ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?clubId .
@@ -175,44 +176,106 @@ def apiID(id):
 
 @app.route("/club/<name>")
 def club(name):
-    name = unquote_plus(name)
+    club_q = """
+            select distinct ?image ?name ?nickname ?assoc ?president ?address ?site ?email ?year ?city ?country where {
+              ?ent ?r ?v .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubImage> ?image .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?name .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubNickname> ?nickname .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAssociation> ?assoc .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubPresident> ?president .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubAddress> ?address .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWebsite> ?site .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubEmail> ?email .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFoundationYear> ?year .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCity> ?city .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubCountry> ?country .
+              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+            }
+            """ % name
 
-    # get_ontology("../rdf/result").load()
-    #
-    #     q = """
-    # select distinct ?club ?ar ?av where {
-    #   ?club  a <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#Club> .
-    #   ?club  ?r ?v
-    #   ?club  ?ar ?av
-    #   filter contains(?v,"%s")
-    # }
-    # """ % name
+    club_tmp = list(default_world.sparql(club_q))[0]
 
-    # club = list(default_world.sparql(q))
-    # club = toJson(club)
+    club_q = {
+        "Nome": club_tmp[1],
+        "Alcunhas": club_tmp[2],
+        "Associa\u00e7\u00e3o": club_tmp[3],
+        "Presidente": club_tmp[4],
+        "Morada": club_tmp[5],
+        "Site Oficial": club_tmp[6],
+        "E-mail": club_tmp[7],
+        "Ano de Funda\u00e7\u00e3o": club_tmp[8],
+        "Cidade": club_tmp[9],
+        "Pa\u00eds": club_tmp[10],
+    }
 
-    club = [{"GK": [[25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"],
-                    [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"]],
-             "DEF": [[25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"]],
-             "MID": [[25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"]],
-             "ATTACK": [[25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"], [25, "Zaidu Sanusi"]]},
-            {"Liga dos Campe\u00f5es": ["6", "4", "0", "2", "12-7"], "Liga Portuguesa": ["13", "9", "2", "2", "31-9"],
-             "Superta\u00e7a": ["1", "1", "0", "0", "3-0"], "Ta\u00e7a de Portugal": ["2", "2", "0", "0", "9-0"],
-             "Ta\u00e7a da Liga": ["2", "1", "1", "0", "4-2"], "": ["24", "17", "3", "4", "59-18"]},
-            {"Nome": ["Futebol Clube do Porto"], "Alcunhas": ["Drag\u00f5es, Azuis e Brancos, Portistas"],
-             "Associa\u00e7\u00e3o": ["AF Porto"], "Presidente": ["Jorge Nuno de Lima Pinto da Costa"],
-             "Evolu\u00e7\u00e3o hist\u00f3rica": ["FC Porto"], "Morada": [
-                "Est\u00e1dio do Drag\u00e3o, Entrada Nascente, Porta 15, Piso 3 Via Futebol Clube do Porto, 4350-415 Porto"],
-             "Site Oficial": ["http://www.fcporto.pt"], "E-mail": ["fcporto@fcporto.pt"], "Rankings": ["16", "60"],
-             "Hino Oficial": [""], "Ano de Funda\u00e7\u00e3o": ["1893-09-28"], "Cidade": ["Porto"],
-             "Pa\u00eds": ["Portugal"], "Marca Equipamento": ["New Balance"],
-             "Patroc\u00ednio": ["Betano | New Balance | Revigr\u00e9s | Super Bock | MEO"], "Equipamento": [""],
-             "Outras Liga\u00e7\u00f5es": ["efgi"], "Num.FPF": ["529"]},
-            {"Ta\u00e7a Intercontinental": "2", "Superta\u00e7a Europeia": "1", "Liga dos Campe\u00f5es": "2",
-             "Europa League": "2", "Liga Portuguesa": "30", "Ta\u00e7a de Portugal": "18",
-             "Superta\u00e7a C\u00e2ndido de Oliveira": "23", "Campeonato de Portugal (Extinto)": "4"},
-            "https://www.zerozero.pt/img/logos/equipas/9_imgbank.png"]
-    club_name = "FC Porto"
+    squad_q = """
+                select distinct ?playerName ?playerImage ?playerPosition ?iden where {
+                  ?ent ?r ?v .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerimage> ?playerImage .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playername> ?playerName .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerposition> ?playerPosition .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerbirthdate> ?birthdate .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+                  ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> ?iden .
+                  ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> "22_23" .  
+                  ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
+                  ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+                }
+                """ % name
+
+    squad_tmp = list(default_world.sparql(squad_q))
+    squad_q = {"GK": [], "DEF": [], "MID": [], "ATTACK": []}
+    for p in squad_tmp:
+        if "Guarda Redes" in p[2]:
+            squad_q["GK"].append([p[1], p[0], p[3]])
+        elif "Defesa" in p[2]:
+            squad_q["DEF"].append([p[1], p[0], p[3]])
+        elif "Médio" in p[2]:
+            squad_q["MID"].append([p[1], p[0], p[3]])
+        else:
+            squad_q["ATTACK"].append([p[1], p[0], p[3]])
+
+    competition_q = """
+                    select ?name where {
+                      ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubWonCompetition> ?competition .
+                      ?competition <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#competitionName> ?name .
+                      ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+                    }
+                    """ % name
+
+    competition_tmp = list(default_world.sparql(competition_q))
+
+    current_season = """
+                            select ?competition ?games ?minutes ?goals ?assists   where {
+                              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
+                              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
+                              ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSquad> ?squad .
+                              ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> "22_23" .
+                              ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord> ?record .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordassists> ?assists .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgames> ?games .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordgoals> ?goals .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordminutes> ?minutes .
+                              ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordcompetitionname> ?competition .
+
+                            }
+                            """ % id
+    current_season = list(default_world.sparql(current_season))
+
+    print(current_season)
+
+    current_season_map = {}
+    for entry in current_season:
+        current_season_map[entry[0]] = [entry[1], entry[2], entry[3], entry[4]]
+
+    club = [squad_q,
+            current_season_map,
+            club_q,
+            competition_tmp,
+            club_tmp[0]]
+    club_name = club_tmp[1]
     return render_template('club.html', club_name=club_name, club_info=club)
 
 
@@ -295,11 +358,10 @@ def player(id):
         clubs_map[entry[1].replace("_", "/")] = [entry[0], entry[3], entry[4], entry[2], entry[5]]
 
     current_season = """
-                        select ?clubFullName ?assists ?games ?goals ?minutes ?competition where {
+                        select ?competition ?games ?minutes ?goals ?assists   where {
                           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#iden> "%s" .
                           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerPlayedForSquad> ?squad .
                           ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubHasSquad> ?squad .
-                          ?club <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#clubFullName> ?clubFullName .
                           ?record <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#recordForSquad> ?squad .
                           ?squad <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#squadYear> "22_23" .
                           ?ent <http://www.semanticweb.org/miguel/ontologies/2022/10/FootyPedia#playerHasRecord> ?record .
@@ -315,11 +377,11 @@ def player(id):
 
     print(current_season)
 
-    out_player += [{
-        "Liga Portuguesa": ["1"],
-        "Ta\u00e7a de Portugal": "1",
-        "Superta\u00e7a C\u00e2ndido de Oliveira": "2"
-    }, ]
+    current_season_map = {}
+    for entry in current_season:
+        current_season_map[entry[0]] = [entry[1], entry[2], entry[3], entry[4]]
+
+    out_player += [current_season_map]
 
     out_player += [competition]
 

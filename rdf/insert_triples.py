@@ -17,12 +17,12 @@ idenCounter = 0
 for x in file:
     clube = onto.Club(unidecode(file[x][15].get("Nome")[0].replace(" ", "_")), clubFullName=file[x][15].get("Nome"),
                       clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
-                      clubWebsite=file[x][15].get("Site Oficial"), clubAdress=file[x][15].get("Morada"),
+                      clubWebsite=file[x][15].get("Site Oficial"), clubAddress=file[x][15].get("Morada"),
                       clubPresident=file[x][15].get("Presidente"),
                       clubUefaRanking=[str(file[x][15].get("Rankings"))],
                       clubFoundationYear=file[x][15].get("Ano de Fundação"), clubCity=file[x][15].get("Cidade"),
                       clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
-                      clubNickName=[file[x][15].get("Alcunhas")],
+                      clubNickname=[" | ".join(file[x][15].get("Alcunhas"))],
                       clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
                       iden=[unidecode(file[x][15].get("Nome")[0].replace(" ", "_"))],
                       clubAssociation=file[x][15].get("Associação"))
@@ -36,7 +36,9 @@ for x in file:
         item = competitionsWon[c]
         competition = onto.Competition(unidecode(c.replace(" ", "_")), competitionName=[c], competitionNumber=[item],
                                        iden=[unidecode(c.replace(" ", "_"))])
-        clube.clubWonCompetition.append(competition)
+
+        for i in range(0, int(item)):
+            clube.clubWonCompetition.append(competition)
 
     player_info = file[x][13]
     for player in player_info:
@@ -83,12 +85,12 @@ for ed in editions:
             clube = onto.Club(unidecode((file[x][15].get("Nome")[0]).replace(" ", "_")),
                               clubFullName=file[x][15].get("Nome"),
                               clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
-                              clubWebsite=file[x][15].get("Site Oficial"), clubAdress=file[x][15].get("Morada"),
+                              clubWebsite=file[x][15].get("Site Oficial"), clubAddress=file[x][15].get("Morada"),
                               clubPresident=file[x][15].get("Presidente"),
                               clubUefaRanking=[str(file[x][15].get("Rankings"))],
                               clubFoundationYear=file[x][15].get("Ano de Fundação"), clubCity=file[x][15].get("Cidade"),
                               clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
-                              clubNickName=[file[x][15].get("Alcunhas")],
+                              clubNickname=[" | ".join(file[x][15].get("Alcunhas"))],
                               clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
                               iden=[unidecode((file[x][15].get("Nome")[0]).replace(" ", "_"))],
                               clubAssociation=file[x][15].get("Associação"))
