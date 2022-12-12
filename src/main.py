@@ -87,7 +87,8 @@ def results():
         results["Player"] = player_results
 
     if len(results) == 0:
-        results = {"Team": [], "Player": []}
+        results = {"Team": [], "Player": [], "League": ["Liga Portugal"]}
+        active = "Team"
     else:
         if "category_input" in args and args["category_input"] in results:
             results = {args["category_input"]: results[args["category_input"]]}
@@ -96,6 +97,7 @@ def results():
             for i in results.keys():
                 active = i
                 break
+    results["League"] = ["Liga Portugal"]
 
     return render_template('results.html', query=query, results=results, active=active)
 
@@ -286,14 +288,12 @@ def league(id, season):
 
     games = []
 
-    with open('scraping\\results\\P1.csv', newline='') as f:
+    with open('../scraping/results/P1.csv', newline='') as f:
         reader = csv.DictReader(f)
         i = 0
         for row in reader:
             i += 1
             games.append([row['Date'], row['Time'], row['HomeTeam'], row['AwayTeam'], row['FTHG'], row['FTAG']])
-            if i == 25:
-                break
 
     return render_template('league.html', table=table, games=games)
 
