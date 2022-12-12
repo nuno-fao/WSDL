@@ -139,14 +139,17 @@ def treat(entitiesList):
 
 @app.route("/api")
 def api():
-    q = request.args.get("q")
-    print(q)
-    entry = list(default_world.sparql("""%s""" % q))
-    out = treat(entry)
+    try:
+        q = request.args.get("q")
+        print(q)
+        entry = list(default_world.sparql("""%s""" % q))
+        out = treat(entry)
 
-    out = json.dumps(out)
-    out = json.loads(out)
-    return (out)
+        out = json.dumps(out)
+        out = json.loads(out)
+        return (out)
+    except:
+        return "ERROR on Query"
 
 
 @app.route("/api/id/<id>")
