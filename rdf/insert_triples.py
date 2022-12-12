@@ -1,5 +1,6 @@
 from owlready2 import *
 import json
+from unidecode import unidecode
 
 onto = get_ontology("ontology.owl").load()
 
@@ -14,7 +15,7 @@ edition.editionOfLeague = league
 
 idenCounter = 0
 for x in file:
-    clube = onto.Club(file[x][15].get("Nome")[0].replace(" ", "_"), clubFullName=file[x][15].get("Nome"),
+    clube = onto.Club(unidecode(file[x][15].get("Nome")[0].replace(" ", "_")), clubFullName=file[x][15].get("Nome"),
                       clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
                       clubWebsite=file[x][15].get("Site Oficial"), clubAdress=file[x][15].get("Morada"),
                       clubPresident=file[x][15].get("Presidente"),
@@ -23,33 +24,34 @@ for x in file:
                       clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
                       clubNickName=[file[x][15].get("Alcunhas")],
                       clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
-                      iden=[file[x][15].get("Nome")[0].replace(" ", "_")],
+                      iden=[unidecode(file[x][15].get("Nome")[0].replace(" ", "_"))],
                       clubAssociation=file[x][15].get("Associação"))
 
-    squad = onto.Squad((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"), squadYear=[23],
-                       iden=[(file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")])
+    squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_")), squadYear=[23],
+                       iden=[unidecode((file[x][15].get("Nome")[0] + "22_23").replace(" ", "_"))])
     squad.squadParticipatedIn = edition
     clube.clubHasSquad.append(squad)
     competitionsWon = file[x][16]
     for c in competitionsWon:
         item = competitionsWon[c]
-        competition = onto.Competition(c.replace(" ", "_"), competitionName=[c], competitionNumber=[item],
-                                       iden=[c.replace(" ", "_")])
+        competition = onto.Competition(unidecode(c.replace(" ", "_")), competitionName=[c], competitionNumber=[item],
+                                       iden=[unidecode(c.replace(" ", "_"))])
         clube.clubWonCompetition.append(competition)
 
     player_info = file[x][13]
     for player in player_info:
         y = player_info[player]
-        player = onto.Player(y[0].replace(" ", "_"), playerimage=[y[11]], playername=[y[0]], playernationality=[y[4]],
+        player = onto.Player(unidecode(y[0].replace(" ", "_")), playerimage=[y[11]], playername=[y[0]],
+                             playernationality=[y[4]],
                              playernaturalFrom=[y[6]],
-                             iden=[y[0].replace(" ", "_")],
+                             iden=[unidecode(y[0].replace(" ", "_"))],
                              playerposition=[y[7]], playerweight=[y[10]], playerheight=[y[9]], playerfoot=[y[8]],
                              playerbirthdate=[y[2]], playerage=[y[1]], playerbirthplace=[y[6]])
         player.playerPlayedForSquad.append(squad)
         player_records = y[12]
         for name in player_records:
             idenCounter += 1
-            record = onto.Record("r_" + str(idenCounter), recordcompetitionname=[name],
+            record = onto.Record(unidecode("r_" + str(idenCounter)), recordcompetitionname=[name],
                                  recordgames=[player_records[name][0]],
                                  recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
                                  iden=["r_" + str(idenCounter)],
@@ -62,9 +64,9 @@ for x in file:
             times = player_titles[competition_name]
             # print(competition_name)
             # print(player_item)
-            player_competition = onto.Competition(competition_name.replace(" ", "_"),
+            player_competition = onto.Competition(unidecode(competition_name.replace(" ", "_")),
                                                   competitionName=[competition_name],
-                                                  iden=[competition_name.replace(" ", "_")])
+                                                  iden=[unidecode(competition_name.replace(" ", "_"))])
             for i in range(int(times)):
                 player.playerWonCompetition.append(player_competition)
 
@@ -78,7 +80,8 @@ for ed in editions:
 
     for x in file:
         if onto[(file[x][15].get("Nome")[0]).replace(" ", "_")] == None:
-            clube = onto.Club((file[x][15].get("Nome")[0]).replace(" ", "_"), clubFullName=file[x][15].get("Nome"),
+            clube = onto.Club(unidecode((file[x][15].get("Nome")[0]).replace(" ", "_")),
+                              clubFullName=file[x][15].get("Nome"),
                               clubSponsor=file[x][15].get("Patrocínio"), clubZeroZeroLink=[website + file[x][12]],
                               clubWebsite=file[x][15].get("Site Oficial"), clubAdress=file[x][15].get("Morada"),
                               clubPresident=file[x][15].get("Presidente"),
@@ -87,14 +90,14 @@ for ed in editions:
                               clubEmail=file[x][15].get("E-mail"), clubImage=[file[x][-2]],
                               clubNickName=[file[x][15].get("Alcunhas")],
                               clubCountry=file[x][15].get("País"), clubMainSponsor=file[x][15].get("Marca Equipamento"),
-                              iden=[(file[x][15].get("Nome")[0]).replace(" ", "_")],
+                              iden=[unidecode((file[x][15].get("Nome")[0]).replace(" ", "_"))],
                               clubAssociation=file[x][15].get("Associação"))
 
         else:
             clube = onto[(file[x][15].get("Nome")[0]).replace(" ", "_")]
 
-        squad = onto.Squad((file[x][15].get("Nome")[0] + ed).replace(" ", "_"), squadYear=[23],
-                           iden=[(file[x][15].get("Nome")[0] + ed).replace(" ", "_")])
+        squad = onto.Squad(unidecode((file[x][15].get("Nome")[0] + ed).replace(" ", "_")), squadYear=[23],
+                           iden=[unidecode((file[x][15].get("Nome")[0] + ed).replace(" ", "_"))])
         squad.squadParticipatedIn = edition
         clube.clubHasSquad.append(squad)
 
@@ -102,11 +105,11 @@ for ed in editions:
         for player in player_info:
             y = player_info[player]
             if onto[y[0].replace(" ", "_")] == None:
-                player = onto.Player(y[0].replace(" ", "_"), playerimage=[y[11]], playername=[y[0]],
+                player = onto.Player(unidecode(y[0].replace(" ", "_")), playerimage=[y[11]], playername=[y[0]],
                                      playernationality=[y[4]], playernaturalFrom=[y[6]],
                                      playerposition=[y[7]], playerweight=[y[10]], playerheight=[y[9]],
                                      playerfoot=[y[8]], playerbirthdate=[y[2]], playerage=[y[1]],
-                                     iden=[y[0].replace(" ", "_")],
+                                     iden=[unidecode(y[0].replace(" ", "_"))],
                                      playerbirthplace=[y[6]])
             else:
                 player = onto[y[0].replace(" ", "_")]
@@ -115,7 +118,7 @@ for ed in editions:
             player_records = y[12]
             for name in player_records:
                 idenCounter += 1
-                record = onto.Record("r_" + str(idenCounter), recordcompetitionname=[name],
+                record = onto.Record(unidecode("r_" + str(idenCounter)), recordcompetitionname=[name],
                                      recordgames=[player_records[name][0]],
                                      recordminutes=[player_records[name][1]], recordgoals=[player_records[name][2]],
                                      iden=["r_" + str(idenCounter)],
