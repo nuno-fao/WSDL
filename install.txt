@@ -1,0 +1,15 @@
+To install all dependencies run:
+pip install -r requirements.txt
+
+To scrape information from ZeroZero navigate to the scraping folder and run the notebook: scraper.ipynb
+This process takes a long time so the results of scraping are already included
+
+To convert the scrapped data into rdf format:
+Navigate to rdf folder and run:
+python3 insert_triples.py
+
+To get the website up:
+Navigate to src folder
+python3 main.py (Tested in Python 3.9)
+
+

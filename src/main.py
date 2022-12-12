@@ -3,7 +3,6 @@ import csv
 import math
 from flask import Flask, render_template, request
 from owlready2 import *
-from urllib.parse import unquote_plus
 
 app = Flask(__name__)
 app.secret_key = "key_super_secreta_não_digam_a_ninguém"
