@@ -9,6 +9,8 @@ app.secret_key = "key_super_secreta_não_digam_a_ninguém"
 
 onto = get_ontology("../rdf/result").load()
 
+include_type = True
+
 
 @app.route("/")  # this sets the route to this page
 def index():
@@ -101,38 +103,62 @@ def results():
     return render_template('results.html', query=query, results=results, active=active)
 
 
-def toJson(entitiesList):
-    temp = treat(entitiesList)
+def toJson(entitiesList, json=False):
+    temp = treat(entitiesList, json)
     # out = json.dumps(out)
 
     out = {}
-    for e in temp:
-        if not (e[0] in out.keys()):
-            out[e[0]] = {}
-        if not (e[1] in out[e[0]].keys()):
-            out[e[0]][e[1]] = []
-        out[e[0]][e[1]].append(e[2])
+    if json:
+        for e in temp:
+            if not (e[0]["@value"] in out.keys()):
+                out[e[0]["@value"]] = {}
+            if not (e[1]["@value"] in out[e[0]["@value"]].keys()):
+                out[e[0]["@value"]][e[1]["@value"]] = []
+            out[e[0]["@value"]][e[1]["@value"]].append(e[2])
+    else:
+        for e in temp:
+            if not (e[0] in out.keys()):
+                out[e[0]] = {}
+            if not (e[1] in out[e[0]].keys()):
+                out[e[0]][e[1]] = []
+            out[e[0]][e[1]].append(e[2])
 
     return out
 
 
-def treat(entitiesList):
-    temp = []
-    for c in entitiesList:
-        line = []
-        for e in c:
-            if type(e) == type(2):
-                line.append(e)
-            elif isinstance(e, str):
-                line.append(e)
-            else:
-                try:
-                    a = "http://localhost:5000/api/id/"
-                    line.append(a + e.name)
-                except:
-                    line.append("")
-        temp.append(line)
-    # out = json.dumps(out)
+def treat(entitiesList, json=False):
+    if not json:
+        temp = []
+        for c in entitiesList:
+            line = []
+            for e in c:
+                if type(e) == type(2):
+                    line.append(e)
+                elif isinstance(e, str):
+                    line.append(e)
+                else:
+                    try:
+                        a = "http://localhost:5000/api/id/"
+                        line.append(a + e.name)
+                    except:
+                        line.append("")
+            temp.append(line)
+    else:
+        temp = []
+        for c in entitiesList:
+            line = []
+            for e in c:
+                if type(e) == type(2):
+                    line.append({"@type": "literal", "@value": e})
+                elif isinstance(e, str):
+                    line.append({"@type": "literal", "@value": e})
+                else:
+                    try:
+                        a = "http://localhost:5000/api/id/"
+                        line.append({"@type": "uri", "@value": a + e.name})
+                    except:
+                        line.append({"@type": "literal", "@value": ""})
+            temp.append(line)
 
     return temp
 
@@ -143,7 +169,7 @@ def api():
         q = request.args.get("q")
         print(q)
         entry = list(default_world.sparql("""%s""" % q))
-        out = treat(entry)
+        out = treat(entry, include_type)
 
         out = json.dumps(out)
         out = json.loads(out)
@@ -171,7 +197,7 @@ def apiID(id):
     entry1 = list(default_world.sparql(q1))
     entry2 = list(default_world.sparql(q2))
     entry = entry1 + entry2
-    out = toJson(entry)
+    out = toJson(entry, include_type)
 
     out = json.dumps(out)
     out = json.loads(out)
